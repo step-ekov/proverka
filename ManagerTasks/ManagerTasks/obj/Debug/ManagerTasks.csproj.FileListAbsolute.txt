@@ -1,0 +1,7 @@
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\obj\Debug\ManagerTasks.csproj.AssemblyReference.cache
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\obj\Debug\ManagerTasks.csproj.CoreCompileInputs.cache
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\bin\Debug\ManagerTasks.exe.config
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\bin\Debug\ManagerTasks.exe
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\bin\Debug\ManagerTasks.pdb
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\obj\Debug\ManagerTasks.exe
+C:\Users\Степан\source\repos\ManagerTasks\ManagerTasks\obj\Debug\ManagerTasks.pdb
