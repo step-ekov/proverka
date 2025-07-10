@@ -34,28 +34,26 @@ namespace ManagerTasks
                             return;
                         case 1:
                             UserData ud = Vvod();
-                            userService.Register(user, ud.Login, ud.Password);
+                            userService.Register(ud.Login, ud.Password);
                             Console.WriteLine(ViewSystem);
                             break;
                         case 2:
                             UserData ud1 = Vvod();
-                            bool isjoin; bool isadmin;
-                            userService.Login(ud1.Login, ud1.Password, out isjoin, out isadmin);
-                            if (isjoin == true)
-                            {
-                                Console.Clear();
-                                if (isadmin == true)
-                                {
-                                    _isadmin = isadmin;
-                                }
-                                Console.WriteLine("Успешный вход");
-                                Menu(taskService, user, taskItem);
-                            }
-                            else
+
+                            User rez = userService.Login(ud1.Login, ud1.Password);
+                            if(rez == null)
                             {
                                 Console.Clear();
                                 Console.WriteLine("Неверные данные, попробуйте еще раз.");
                                 Console.WriteLine(ViewSystem);
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Успешный вход");
+                                if (rez.Role == "admin")
+                                    _isadmin = true;
+                                Menu(taskService, rez, taskItem);
                             }
                             break;
                         default:

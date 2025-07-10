@@ -31,11 +31,5 @@ namespace ManagerTasks.Models
         {
             new TaskItem(1, "test0", "test0", new DateTime(2025, 12, 24), "закрыта")
         };
-        public static List<User> users = new List<User>
-        {
-            new User("test", "test1", "client"),
-            new User("test0", "test0", "admin"),
-            new User("t", "t", "admin")
-        };
     }
 }

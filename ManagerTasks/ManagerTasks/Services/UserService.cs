@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace ManagerTasks.Services
 {
-    public class UserService : User
+    public class UserService
     {
+        private List<User> users = new List<User>
+        {
+            new User("test", "test1", "client"),
+            new User("test0", "test0", "admin"),
+            new User("t", "t", "admin")
+        };
+
         public void ViewUsers()
         {
             foreach (var usr in users)
@@ -18,30 +25,32 @@ namespace ManagerTasks.Services
                 Console.WriteLine();
             }
         }
-        public void Login(string login, string password, out bool isjoin, out bool isadmin)
+        public User Login(string login, string password)
         {
-            isjoin = false;
-            isadmin = false;
-            string[] s = (login + " " + password).Split(' ');
-            foreach (var user in users)
+            foreach (var u in users)
             {
-                if (user.UserName == s[0] && user.UserPassword == s[1])
+                if (u.UserName == login && u.UserPassword == password)
                 {
-                    if (user.Role == "admin")
-                    {
-                        isadmin = true;
-                    }
-                    isjoin = true;
-                    break;
+                    return u;
                 }
             }
+            return null;
         }
-        public void Register(User user, string Login, string Password)
+        public void Register(string Login, string Password)
         {
-            user.UserName = Login;
-            user.UserPassword = Password;
-            user.Role = "client";
-            User.users.Add(user);
+            if (users.Any(u => u.UserName == Login))
+            {
+                Console.Clear();
+                Console.WriteLine("Пользователь с таким именем уже существует.");
+                return;
+            }
+            User user = new User
+            {
+                UserName = Login,
+                UserPassword = Password,
+                Role = "client"
+            };
+            users.Add(user);
             Console.Clear();
             Console.WriteLine("Успешная регистрация");
         }

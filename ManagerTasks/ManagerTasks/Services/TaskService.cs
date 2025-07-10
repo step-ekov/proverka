@@ -19,14 +19,15 @@ namespace ManagerTasks.Services
             string Title = Console.ReadLine();
             Console.Write("Описание задачи: ");
             string Description = Console.ReadLine();
-            Console.Write("Дата окончания задачи: ");
+            Console.Write("Дата окончания задачи: (пример: 2025-12-31/21.12.2025) ");
             DateTime date = DateTime.Parse(Console.ReadLine());
             Console.Write("Статус(В работе\\Закрыта) задачи: ");
             string status = Console.ReadLine();
 
-            user.taskItems.Add(new TaskItem(user.taskItems.Count + 1, Title, Description, date, status));//id - Guid
-            Console.WriteLine("Задача успешно добавлена");
+            int newId = user.taskItems.Any() ? user.taskItems.Max(t => t.Id) + 1 : 1;
+            user.taskItems.Add(new TaskItem(newId, Title, Description, date, status));
             Console.Clear();
+            Console.WriteLine("Задача успешно добавлена");
             Console.WriteLine("Меню:\n 1 - Посмотреть мои задачи\n 2 - Добавить задачу\n" +
             " 3 - Удалить задачу\n 4 - просмотреть все задачи(админ)\n 0 - Выход из меню");
         }
@@ -44,7 +45,7 @@ namespace ManagerTasks.Services
             Console.WriteLine("Мои задачи"); Console.WriteLine();
             foreach (var task in user.taskItems)
             {
-                Console.WriteLine($"Номер задачи: {task.Id}\nНазвание: {task.Title}\nОписание: {task.Description}\nДата окончания: {task.DueDate}\nСтатус: {task.Status}");
+                Console.WriteLine($"Номер задачи: {task.Id}\nНазвание: {task.Title}\nОписание: {task.Description}\nДата окончания: {task.DueDate.ToShortDateString()}\nСтатус: {task.Status}");
                 Console.WriteLine();
             }
         }
